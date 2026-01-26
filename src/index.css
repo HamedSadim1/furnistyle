@@ -1,29 +1,58 @@
+/**
+ * FurniStyle Global Styles
+ *
+ * This CSS file contains the global styles, design system, and custom properties
+ * for the FurniStyle furniture e-commerce application. It establishes:
+ *
+ * - CSS Custom Properties (CSS Variables) for consistent theming
+ * - Global reset and normalization
+ * - Typography system
+ * - Color palette and design tokens
+ * - Responsive breakpoints and utilities
+ * - Component-specific styles
+ *
+ * Design System:
+ * - Primary colors: Purple gradient scale for branding
+ * - Grey scale: Comprehensive grey palette for text and backgrounds
+ * - Typography: System font stack for optimal performance
+ * - Spacing: Consistent margin and padding scales
+ * - Shadows: Multiple shadow levels for depth
+ */
+
+/* CSS Reset and Global Box Model */
 *,
 ::after,
 ::before {
   box-sizing: border-box;
 }
-/* fonts */
+
+/* Font imports (commented out for performance - using system fonts) */
 /* @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Montserrat&display=swap"); */
 
+/* Base HTML styling */
 html {
-  font-size: 100%;
-} /*16px*/
+  font-size: 100%; /* 16px base font size */
+}
 
+/**
+ * CSS Custom Properties (Design Tokens)
+ * These variables define the color palette, typography, spacing, and other design tokens
+ * used throughout the application for consistency.
+ */
 :root {
-  /* colors */
-  --primary-100: #e2e0ff;
+  /* Primary Color Palette - Purple gradient scale */
+  --primary-100: #e2e0ff; /* Lightest purple */
   --primary-200: #c1beff;
   --primary-300: #a29dff;
   --primary-400: #837dff;
-  --primary-500: #645cff;
+  --primary-500: #645cff; /* Main brand color */
   --primary-600: #504acc;
   --primary-700: #3c3799;
   --primary-800: #282566;
-  --primary-900: #141233;
+  --primary-900: #141233; /* Darkest purple */
 
-  /* grey */
-  --grey-50: #f8fafc;
+  /* Grey Scale - Comprehensive grey palette */
+  --grey-50: #f8fafc; /* Lightest grey (backgrounds) */
   --grey-100: #f1f5f9;
   --grey-200: #e2e8f0;
   --grey-300: #cbd5e1;
@@ -32,20 +61,21 @@ html {
   --grey-600: #475569;
   --grey-700: #334155;
   --grey-800: #1e293b;
-  --grey-900: #0f172a;
-  /* rest of the colors */
+  --grey-900: #0f172a; /* Darkest grey (text) */
+
+  /* Status Colors */
   --black: #222;
   --white: #fff;
-  --red-light: #f8d7da;
-  --red-dark: #842029;
-  --green-light: #d1e7dd;
-  --green-dark: #0f5132;
+  --red-light: #f8d7da; /* Error backgrounds */
+  --red-dark: #842029; /* Error text */
+  --green-light: #d1e7dd; /* Success backgrounds */
+  --green-dark: #0f5132; /* Success text */
 
-  /* fonts  */
+  /* Typography Scale */
+  --small-text: 0.875rem; /* 14px */
+  --extra-small-text: 0.7em; /* ~11px */
 
-  --small-text: 0.875rem;
-  --extra-small-text: 0.7em;
-  /* rest of the vars */
+  /* Theme Variables */
   --backgroundColor: var(--grey-50);
   --textColor: var(--grey-900);
   --borderRadius: 0.25rem;
@@ -54,7 +84,7 @@ html {
   --max-width: 1120px;
   --fixed-width: 600px;
 
-  /* box shadow*/
+  /* Shadow System - Multiple levels for depth and hierarchy */
   --shadow-1: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --shadow-2:
     0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
@@ -64,24 +94,34 @@ html {
     0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
+/**
+ * Body Element Styling
+ * Sets up the global layout foundation using flexbox for sticky footer pattern
+ * Removes default browser margins and ensures full viewport height
+ */
 body {
   background: var(--backgroundColor);
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
-    Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    Cantarell, "Open Sans", "Helvetica Neue", sans-serif; /* System font stack for performance */
   font-weight: 400;
-  line-height: 1.75;
+  line-height: 1.75; /* Improved readability */
   color: var(--textColor);
-  min-height: 100vh;
+  min-height: 100vh; /* Full viewport height for sticky footer */
   display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
+  flex-direction: column; /* Vertical layout for header/main/footer pattern */
+  margin: 0; /* Remove default browser margins */
+  padding: 0; /* Remove default browser padding */
 }
 
+/**
+ * Main Content Area
+ * Uses flex: 1 to take up available space between header and footer
+ * Includes top padding to account for fixed/sticky navbar
+ */
 main {
-  flex: 1;
-  padding-top: 5rem; /* Space for sticky navbar */
+  flex: 1; /* Takes up remaining space in flex container */
+  padding-top: 5rem; /* Space for sticky navbar (80px) */
 }
 
 p {

@@ -1,5 +1,18 @@
+/**
+ * FurniStyle Data Layer
+ *
+ * This file contains all static data used throughout the FurniStyle application.
+ * In a real-world application, this data would typically come from an API or database.
+ * The product images are sourced from Unsplash for high-quality, reliable images.
+ */
+
 import { IPRODUCT, INAV } from "../types";
 
+/**
+ * Furniture product catalog
+ * Contains all available products with their details, pricing, and images
+ * Images are optimized to 500x500 pixels for consistent display
+ */
 export const products: IPRODUCT[] = [
   {
     id: "recZkNf2kwmdBcqd0",
@@ -38,6 +51,11 @@ export const products: IPRODUCT[] = [
   },
 ];
 
+/**
+ * Navigation menu configuration
+ * Defines the main navigation links used in the StyledNavbar component
+ * Each item maps to a React Router path
+ */
 export const NavData: INAV[] = [
   {
     id: "1",
