@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { USER } from "../../types";
-import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaArrowRight,
+  FaShieldAlt,
+} from "react-icons/fa";
 
 interface LoginProps {
   setUser: (user: USER) => void;
@@ -19,75 +25,76 @@ const Login = ({ setUser }: LoginProps) => {
     if (!name || !email) return;
 
     setIsLoading(true);
-
-    // Simulate API call
     setTimeout(() => {
-      setUser({ name: name, email: email });
+      setUser({ name, email });
       setIsLoading(false);
       navigate("/dashboard");
     }, 1000);
   };
 
   return (
-    <section className="section">
-      <div className="login-container">
-        <div className="login-header">
-          <h1>Welcome Back</h1>
-          <p>Please sign in to your account</p>
+    <section className="section login-page">
+      <div className="login-card">
+        <div className="login-card-header">
+          <div className="login-avatar">
+            <FaUser />
+          </div>
+          <h2>Welcome Back</h2>
+          <p>Sign in to access your personalized dashboard.</p>
         </div>
 
-        <form className="form login-form" onSubmit={handleSubmit}>
-          <div className="form-row">
-            <label htmlFor="name" className="form-label">
+        <form className="login-form-modern" onSubmit={handleSubmit}>
+          <div className="login-field">
+            <label htmlFor="name">
               <FaUser /> Full Name
             </label>
             <input
               type="text"
-              className="form-input"
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              placeholder="John Doe"
               required
             />
           </div>
 
-          <div className="form-row">
-            <label htmlFor="email" className="form-label">
+          <div className="login-field">
+            <label htmlFor="email">
               <FaEnvelope /> Email Address
             </label>
             <input
               type="email"
-              className="form-input"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="john@example.com"
               required
             />
           </div>
 
-          <button type="submit" className="btn btn-block" disabled={isLoading}>
+          <button
+            type="submit"
+            className="btn btn-hero-primary login-submit"
+            disabled={isLoading}
+          >
             {isLoading ? (
               <>
-                <div className="loading"></div>
+                <div className="loading" style={{ width: "1.25rem", height: "1.25rem", borderWidth: "2px" }}></div>
                 Signing In...
               </>
             ) : (
               <>
-                <FaLock /> Sign In
+                <FaLock /> Sign In <FaArrowRight />
               </>
             )}
           </button>
         </form>
 
-        <div className="login-footer">
-          <p>
-            Don't have an account?{" "}
-            <span className="demo-text">
-              This is a demo - enter any name and email!
-            </span>
-          </p>
+        <div className="login-card-footer">
+          <div className="login-demo-info">
+            <FaShieldAlt />
+            <span>Demo mode — enter any name and email to sign in</span>
+          </div>
         </div>
       </div>
     </section>

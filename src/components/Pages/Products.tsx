@@ -2,7 +2,6 @@
  * Products Component
  *
  * Displays the furniture product catalog with search functionality.
- * Key features:
  * - Real-time search filtering using useMemo for performance
  * - Responsive product cards with hover effects
  * - Lazy loading for images
@@ -13,13 +12,11 @@
 import { useState, useMemo, memo } from "react";
 import { Link } from "react-router-dom";
 import { products } from "../../data";
-import { FaSearch, FaEye } from "react-icons/fa";
+import { FaSearch, FaEye, FaTimes } from "react-icons/fa";
 
 const Products = memo(() => {
-  // State for search input - controls product filtering
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Memoized filtered products for performance - only recalculates when searchTerm changes
   const filteredProducts = useMemo(() => {
     return products.filter((product) =>
       product.name.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -28,64 +25,95 @@ const Products = memo(() => {
 
   return (
     <section className="section">
-      {/* Section title with decorative underline */}
-      <div className="title">
-        <h2>Our Products</h2>
-        <div className="title-underline"></div>
-      </div>
+      <div className="products-header">
+        <div className="section-header" style={{ marginBottom: "2rem" }}>
+          <span className="section-tag">Collection</span>
+          <h2 className="section-title">Browse Products</h2>
+          <p className="section-desc">
+            Find the perfect piece for your space.
+          </p>
+        </div>
 
-      {/* Search functionality container */}
-      <div className="search-container">
-        <div className="search-input-wrapper">
-          <FaSearch className="search-icon" />
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
+        <div className="search-container">
+          <div className="search-input-wrapper">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+            {searchTerm && (
+              <button
+                className="search-clear"
+                onClick={() => setSearchTerm("")}
+                aria-label="Clear search"
+              >
+                <FaTimes />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Products grid container */}
+      {searchTerm && (
+        <p className="search-result-count">
+          {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""} found
+          {searchTerm && <> for "<strong>{searchTerm}</strong>"</>}
+        </p>
+      )}
+
       <div className="products">
         {filteredProducts.length > 0 ? (
-          // Map through filtered products and render product cards
           filteredProducts.map((product) => (
-            <article key={product.id} className="product-card">
-              {/* Product image container with overlay */}
-              <div className="product-image-container">
+            <article key={product.id} className="product-card-modern">
+              <div className="product-card-image-wrap">
                 <img
                   src={product.image}
                   alt={product.name}
-                  loading="lazy" // Lazy loading for performance
-                  className="product-image"
+                  loading="lazy"
+                  className="product-card-img"
                 />
-                {/* Overlay that appears on hover with view details link */}
-                <div className="product-overlay">
+                <div className="product-card-overlay">
                   <Link
                     to={`/products/${product.id}`}
-                    className="overlay-btn"
-                    aria-label={`View details for ${product.name}`} // Accessibility
+                    className="product-card-btn"
+                    aria-label={`View details for ${product.name}`}
                   >
-                    <FaEye /> View Details
+                    <FaEye /> Quick View
                   </Link>
                 </div>
+                <span className="product-card-badge">New</span>
               </div>
-
-              {/* Product information */}
-              <div className="product-info">
-                <h3 className="product-name">{product.name}</h3>
-                <p className="product-price">${product.price}</p>
+              <div className="product-card-body">
+                <h3 className="product-card-name">{product.name}</h3>
+                <div className="product-card-footer">
+                  <span className="product-card-price">${product.price}</span>
+                  <Link
+                    to={`/products/${product.id}`}
+                    className="product-card-link"
+                  >
+                    Details →
+                  </Link>
+                </div>
               </div>
             </article>
           ))
         ) : (
-          // No products found message
           <div className="no-products">
-            <h3>No products found matching "{searchTerm}"</h3>
-            <p>Try adjusting your search terms.</p>
+            <FaSearch className="no-products-icon" />
+            <h3>No products found</h3>
+            <p>
+              No results for "<strong>{searchTerm}</strong>". Try a different
+              search term.
+            </p>
+            <button
+              className="btn"
+              onClick={() => setSearchTerm("")}
+            >
+              Clear Search
+            </button>
           </div>
         )}
       </div>
@@ -93,7 +121,6 @@ const Products = memo(() => {
   );
 });
 
-// Display name for debugging purposes
 Products.displayName = "Products";
 
 export default Products;
