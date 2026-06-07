@@ -1,0 +1,9 @@
+export { default as HomeHeroSection } from "./HomeHeroSection";
+export { default as FeaturesSection } from "./FeaturesSection";
+export { default as StatsBanner } from "./StatsBanner";
+export { default as TestimonialsSection } from "./TestimonialsSection";
+export { default as CallToAction } from "./CallToAction";
+export { default as AboutHeroSection } from "./AboutHeroSection";
+export { default as ValuesSection } from "./ValuesSection";
+export { default as StorySection } from "./StorySection";
+export { default as AboutCallToAction } from "./AboutCallToAction";

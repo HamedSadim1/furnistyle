@@ -7,31 +7,47 @@
  */
 
 /**
+ * Product feature with label and optional icon
+ */
+export interface ProductFeature {
+  label: string;
+  included: boolean;
+}
+
+/**
  * Product interface representing a furniture item in the catalog
- * Used for displaying products in the Products page and SingleProduct details
  */
 export interface IPRODUCT {
-  id: string; // Unique identifier for the product
-  name: string; // Display name of the furniture item
-  image: string; // URL to the product image (hosted on Unsplash)
-  price: number; // Price in USD
+  id: string;
+  name: string;
+  image: string;
+  images: string[];
+  price: number;
+  originalPrice?: number;
+  description: string;
+  features: ProductFeature[];
+  specs: { label: string; value: string }[];
+  stock: number;
+  category: string;
+  rating: number;
+  reviewCount: number;
+  colors: { name: string; hex: string }[];
+  materials: string[];
 }
 
 /**
  * Navigation item interface for navbar menu items
- * Used by the StyledNavbar component to render navigation links
  */
 export interface INAV {
-  id: string; // Unique identifier for the nav item
-  to: string; // React Router path for navigation
-  text: string; // Display text for the navigation link
+  id: string;
+  to: string;
+  text: string;
 }
 
 /**
  * User interface for authentication and user management
- * Used for login state and dashboard personalization
  */
 export interface USER {
-  name: string; // User's display name
-  email: string; // User's email address for identification
+  name: string;
+  email: string;
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { USER } from "../../types";
+import { useAuth } from "../hooks/useAuth";
+import { LOGIN_TIMEOUT_MS, LOGIN_PLACEHOLDERS, ROUTES } from "../constants";
 import {
   FaUser,
   FaEnvelope,
@@ -9,11 +10,8 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 
-interface LoginProps {
-  setUser: (user: USER) => void;
-}
-
-const Login = ({ setUser }: LoginProps) => {
+const Login = () => {
+  const { setUser } = useAuth();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -28,8 +26,8 @@ const Login = ({ setUser }: LoginProps) => {
     setTimeout(() => {
       setUser({ name, email });
       setIsLoading(false);
-      navigate("/dashboard");
-    }, 1000);
+      navigate(ROUTES.DASHBOARD);
+    }, LOGIN_TIMEOUT_MS);
   };
 
   return (
@@ -53,7 +51,7 @@ const Login = ({ setUser }: LoginProps) => {
               id="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="John Doe"
+              placeholder={LOGIN_PLACEHOLDERS.name}
               required
             />
           </div>
@@ -67,7 +65,7 @@ const Login = ({ setUser }: LoginProps) => {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="john@example.com"
+              placeholder={LOGIN_PLACEHOLDERS.email}
               required
             />
           </div>
@@ -79,7 +77,7 @@ const Login = ({ setUser }: LoginProps) => {
           >
             {isLoading ? (
               <>
-                <div className="loading" style={{ width: "1.25rem", height: "1.25rem", borderWidth: "2px" }}></div>
+                <div className="loading loading-spinner-sm"></div>
                 Signing In...
               </>
             ) : (

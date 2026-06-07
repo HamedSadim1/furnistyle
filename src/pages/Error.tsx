@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { FaHome, FaSearch } from "react-icons/fa";
+import { ROUTES } from "../constants";
 
 const Error = () => {
   return (
@@ -17,18 +18,18 @@ const Error = () => {
           moved or you may have typed the wrong URL.
         </p>
         <div className="error-page-actions">
-          <Link to="/" className="btn btn-hero-primary">
+          <Link to={ROUTES.HOME} className="btn btn-hero-primary">
             <FaHome /> Back Home
           </Link>
-          <Link to="/products" className="btn btn-hero-secondary">
+          <Link to={ROUTES.PRODUCTS} className="btn btn-hero-secondary">
             <FaSearch /> Browse Products
           </Link>
         </div>
         <div className="error-page-links">
           <span>Try these pages:</span>
-          <Link to="/about">About</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/dashboard">Dashboard</Link>
+          <Link to={ROUTES.ABOUT}>About</Link>
+          <Link to={ROUTES.LOGIN}>Login</Link>
+          <Link to={ROUTES.DASHBOARD}>Dashboard</Link>
         </div>
       </div>
     </section>

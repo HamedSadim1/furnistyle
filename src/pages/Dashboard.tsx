@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { USER } from "../../types";
+import { useAuth } from "../hooks/useAuth";
+import { DASHBOARD_ICON_COLORS, ROUTES } from "../constants";
+import { getInitials } from "../utils/format";
 import {
   FaUser,
   FaShoppingBag,
@@ -9,17 +11,9 @@ import {
   FaClock,
 } from "react-icons/fa";
 
-interface DashboardProps {
-  user: USER;
-}
-
-const Dashboard = ({ user }: DashboardProps) => {
-  const initials = user.name
-    .split(" ")
-    .map((n) => n[0])
-    .join("")
-    .toUpperCase()
-    .slice(0, 2);
+const Dashboard = () => {
+  const { user } = useAuth();
+  const initials = getInitials(user.name);
 
   return (
     <section className="section">
@@ -27,7 +21,7 @@ const Dashboard = ({ user }: DashboardProps) => {
       <div className="dashboard-welcome">
         <div className="dashboard-avatar">{initials}</div>
         <div className="dashboard-welcome-text">
-          <span className="section-tag" style={{ background: "rgba(255,255,255,0.15)", color: "#c1beff" }}>
+          <span className="section-tag section-tag-hero">
             Dashboard
           </span>
           <h2>Welcome back, {user.name}</h2>
@@ -37,28 +31,28 @@ const Dashboard = ({ user }: DashboardProps) => {
 
       {/* Quick Stats */}
       <div className="dashboard-stats">
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card glass-card">
           <FaShoppingBag className="ds-icon" />
           <div>
             <span className="ds-value">0</span>
             <span className="ds-label">Orders</span>
           </div>
         </div>
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card glass-card">
           <FaHeart className="ds-icon" />
           <div>
             <span className="ds-value">0</span>
             <span className="ds-label">Wishlist</span>
           </div>
         </div>
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card glass-card">
           <FaClock className="ds-icon" />
           <div>
             <span className="ds-value">Active</span>
             <span className="ds-label">Account Status</span>
           </div>
         </div>
-        <div className="dashboard-stat-card">
+        <div className="dashboard-stat-card glass-card">
           <FaUser className="ds-icon" />
           <div>
             <span className="ds-value">{user.name.split(" ")[0]}</span>
@@ -68,14 +62,13 @@ const Dashboard = ({ user }: DashboardProps) => {
       </div>
 
       {/* Actions */}
-      <div className="section-header" style={{ marginTop: "3rem" }}>
+      <div className="section-header dashboard-header-top">
         <span className="section-tag">Quick Actions</span>
         <h2 className="section-title">What would you like to do?</h2>
       </div>
 
-      <div className="dashboard-actions-modern">
-        <Link to="/products" className="da-card">
-          <div className="da-icon" style={{ background: "#645cff15", color: "var(--primary-500)" }}>
+      <div className="dashboard-actions-modern">          <Link to={ROUTES.PRODUCTS} className="da-card glass-card">
+          <div className="da-icon" style={{ background: DASHBOARD_ICON_COLORS.shop.bg, color: DASHBOARD_ICON_COLORS.shop.color }}>
             <FaShoppingBag />
           </div>
           <h4>Shop Products</h4>
@@ -85,8 +78,8 @@ const Dashboard = ({ user }: DashboardProps) => {
           </span>
         </Link>
 
-        <div className="da-card da-card-disabled">
-          <div className="da-icon" style={{ background: "#f59e0b15", color: "#f59e0b" }}>
+        <div className="da-card da-card-disabled glass-card">
+          <div className="da-icon" style={{ background: DASHBOARD_ICON_COLORS.favorites.bg, color: DASHBOARD_ICON_COLORS.favorites.color }}>
             <FaHeart />
           </div>
           <h4>Favorites</h4>
@@ -94,8 +87,8 @@ const Dashboard = ({ user }: DashboardProps) => {
           <span className="da-coming-soon">Coming Soon</span>
         </div>
 
-        <div className="da-card da-card-disabled">
-          <div className="da-icon" style={{ background: "#3b82f615", color: "#3b82f6" }}>
+        <div className="da-card da-card-disabled glass-card">
+          <div className="da-icon" style={{ background: DASHBOARD_ICON_COLORS.settings.bg, color: DASHBOARD_ICON_COLORS.settings.color }}>
             <FaCog />
           </div>
           <h4>Account Settings</h4>

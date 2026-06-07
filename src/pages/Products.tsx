@@ -1,38 +1,22 @@
-/**
- * Products Component
- *
- * Displays the furniture product catalog with search functionality.
- * - Real-time search filtering using useMemo for performance
- * - Responsive product cards with hover effects
- * - Lazy loading for images
- * - Accessibility features (aria-labels)
- * - Memoized for performance optimization
- */
-
-import { useState, useMemo, memo } from "react";
+import { memo } from "react";
 import { Link } from "react-router-dom";
-import { products } from "../../data";
+import { useProductSearch } from "../hooks/useProductSearch";
+import { formatPrice } from "../utils/format";
+import SectionHeader from "../components/ui/SectionHeader";
 import { FaSearch, FaEye, FaTimes } from "react-icons/fa";
 
 const Products = memo(() => {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const filteredProducts = useMemo(() => {
-    return products.filter((product) =>
-      product.name.toLowerCase().includes(searchTerm.toLowerCase()),
-    );
-  }, [searchTerm]);
+  const { searchTerm, setSearchTerm, results: filteredProducts, clearSearch, hasSearch } = useProductSearch();
 
   return (
     <section className="section">
       <div className="products-header">
-        <div className="section-header" style={{ marginBottom: "2rem" }}>
-          <span className="section-tag">Collection</span>
-          <h2 className="section-title">Browse Products</h2>
-          <p className="section-desc">
-            Find the perfect piece for your space.
-          </p>
-        </div>
+        <SectionHeader
+          tag="Collection"
+          title="Browse Products"
+          desc="Find the perfect piece for your space."
+          className="products-section-header"
+        />
 
         <div className="search-container">
           <div className="search-input-wrapper">
@@ -44,10 +28,10 @@ const Products = memo(() => {
               onChange={(e) => setSearchTerm(e.target.value)}
               className="search-input"
             />
-            {searchTerm && (
+            {hasSearch && (
               <button
                 className="search-clear"
-                onClick={() => setSearchTerm("")}
+                onClick={clearSearch}
                 aria-label="Clear search"
               >
                 <FaTimes />
@@ -57,17 +41,17 @@ const Products = memo(() => {
         </div>
       </div>
 
-      {searchTerm && (
+      {hasSearch && (
         <p className="search-result-count">
           {filteredProducts.length} product{filteredProducts.length !== 1 ? "s" : ""} found
-          {searchTerm && <> for "<strong>{searchTerm}</strong>"</>}
+          for "<strong>{searchTerm}</strong>"
         </p>
       )}
 
       <div className="products">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
-            <article key={product.id} className="product-card-modern">
+            <article key={product.id} className="product-card-modern glass-card">
               <div className="product-card-image-wrap">
                 <img
                   src={product.image}
@@ -89,7 +73,7 @@ const Products = memo(() => {
               <div className="product-card-body">
                 <h3 className="product-card-name">{product.name}</h3>
                 <div className="product-card-footer">
-                  <span className="product-card-price">${product.price}</span>
+                  <span className="product-card-price">{formatPrice(product.price)}</span>
                   <Link
                     to={`/products/${product.id}`}
                     className="product-card-link"
@@ -110,7 +94,7 @@ const Products = memo(() => {
             </p>
             <button
               className="btn"
-              onClick={() => setSearchTerm("")}
+              onClick={clearSearch}
             >
               Clear Search
             </button>

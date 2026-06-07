@@ -1,28 +1,24 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { NavData } from "../../data";
+import { SITE_NAME, CURRENT_YEAR } from "../../constants";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-content">
         <div className="footer-section">
-          <h3>Comfy Store</h3>
+          <h3>{SITE_NAME}</h3>
           <p>Your one-stop shop for quality furniture and home decor.</p>
         </div>
         <div className="footer-section">
           <h4>Quick Links</h4>
           <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/products">Products</a>
-            </li>
-            <li>
-              <a href="/login">Login</a>
-            </li>
+            {NavData.map((nav) => (
+              <li key={nav.id}>
+                <Link to={nav.to}>{nav.text}</Link>
+              </li>
+            ))}
           </ul>
         </div>
         <div className="footer-section">
@@ -44,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>&copy; 2026 Comfy Store. All rights reserved.</p>
+        <p>&copy; {CURRENT_YEAR} {SITE_NAME}. All rights reserved.</p>
       </div>
     </footer>
   );
