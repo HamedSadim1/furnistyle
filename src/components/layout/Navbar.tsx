@@ -12,8 +12,9 @@
 
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { NavData } from "../data";
-import { INAV } from "../types";
+import { NavData } from "../../data";
+import { INAV } from "../../types";
+import { SITE_NAME } from "../../constants";
 import {
   FaBars,
   FaTimes,
@@ -71,8 +72,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="nav-brand">
-        <h3>Comfy Store</h3>
+      <div className="nav-brand">          <h3>{SITE_NAME}</h3>
       </div>
       <div className={`nav-links ${isOpen ? "open" : ""}`}>
         {NavData.map((data) => {

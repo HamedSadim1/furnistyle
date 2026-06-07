@@ -1,200 +1,226 @@
 # FurniStyle 🛋️
 
-A modern, responsive furniture e-commerce application built with React Router 6, showcasing contemporary web development practices and elegant UI/UX design.
+A modern, responsive furniture e-commerce application built with **React 19** and **React Router DOM 7**, featuring a stunning glassmorphism design system, smooth animations, and a fully responsive layout.
 
-![FurniStyle Preview](https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=400&fit=crop&crop=center)
+## 📸 Screenshots
+
+| Home | Products | Product Detail | About |
+|:---:|:---:|:---:|:---:|
+| ![Home Page](/screenshots/home-page.png) | ![Products Page](/screenshots/products-page.png) | ![Product Detail](/screenshots/product-detail.png) | ![About Page](/screenshots/about-page.png) |
+| **Login** | **Dashboard** | **Error 404** | |
+| ![Login Page](/screenshots/login-page.png) | ![Dashboard Page](/screenshots/dashboard-page.png) | ![Error Page](/screenshots/error-page.png) | |
+
+---
 
 ## ✨ Features
 
-- **Modern UI/UX**: Clean, responsive design with smooth animations and hover effects
-- **React Router 6**: Advanced routing with nested layouts, protected routes, and dynamic navigation
-- **Product Catalog**: Interactive furniture showcase with search functionality
-- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
-- **TypeScript**: Full type safety throughout the application
-- **Modern CSS**: Custom properties, flexbox, and CSS Grid layouts
-- **Icon Integration**: Beautiful React Icons for enhanced visual appeal
+| Feature | Description |
+|---------|-------------|
+| 🎨 **Glassmorphism Design** | Modern UI with glass-effect cards, blur backdrops, and gradient accents |
+| 🧭 **React Router 7** | Nested layouts, dynamic routes, protected routes, and error boundaries |
+| 🔍 **Product Search** | Real-time filtering with a clean search interface |
+| 🖼️ **Image Gallery** | Interactive product detail view with thumbnail navigation |
+| 📱 **Fully Responsive** | Optimized breakpoints for mobile, tablet, and desktop |
+| 🏠 **Hero Animations** | Floating background shapes with smooth parallax-like motion |
+| 🛡️ **Protected Routes** | Authentication flow with login and user dashboard |
+| 🔄 **Smooth Hover States** | Cards lift, images reveal overlays, and borders animate |
+| ♿ **Accessibility** | Focus-visible indicators and reduced-motion support |
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React 19.2.4 with TypeScript
-- **Routing**: React Router DOM 7.13.0
-- **Build Tool**: Vite 7.3.1
-- **Icons**: React Icons 5.5.0
-- **Styling**: Modern CSS with custom properties
-- **Development**: ESLint, TypeScript compiler
+| Technology | Version |
+|------------|---------|
+| [React](https://react.dev/) | 19.2.x |
+| [React Router DOM](https://reactrouter.com/) | 7.17.x |
+| [Vite](https://vitejs.dev/) | 8.x |
+| [TypeScript](https://www.typescriptlang.org/) | 6.x |
+| [React Icons](https://react-icons.github.io/react-icons/) | 5.6.x |
+| [ESLint](https://eslint.org/) | 10.x |
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js (v16 or higher)
-- npm or yarn
+- **Node.js** v18 or higher
+- **npm**, **yarn**, or **pnpm**
 
 ### Installation
 
-1. **Clone the repository**
+```bash
+# Clone the repository
+git clone <repository-url>
+cd furnistyle
 
-   ```bash
-   git clone <repository-url>
-   cd furnistyle
-   ```
+# Install dependencies
+npm install
 
-2. **Install dependencies**
+# Start the development server
+npm run dev
+```
 
-   ```bash
-   npm install
-   ```
-
-3. **Start the development server**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-
-   ```bash
-   http://localhost:5173
-   ```
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ### Build for Production
 
 ```bash
 npm run build
+npm run preview   # Preview the production build locally
 ```
 
-### Preview Production Build
+### Lint
 
 ```bash
-npm run preview
+npm run lint
 ```
 
 ## 📁 Project Structure
 
-```bash
+```
 src/
 ├── components/
 │   ├── Pages/
-│   │   ├── About.tsx
-│   │   ├── Dashboard.tsx
-│   │   ├── Error.tsx
-│   │   ├── Home.tsx
-│   │   ├── Login.tsx
-│   │   ├── Products.tsx
-│   │   ├── ProtectedRoute.tsx
-│   │   ├── SharedLayout.tsx
-│   │   ├── SharedProductLayout.tsx
-│   │   └── SingleProduct.tsx
-│   ├── StyledNavbar.tsx
-│   └── usePages.tsx
+│   │   ├── About.tsx              # About us page with story & values
+│   │   ├── Dashboard.tsx          # User dashboard (protected)
+│   │   ├── Error.tsx              # 404 / error page
+│   │   ├── Home.tsx               # Landing page with hero & features
+│   │   ├── Login.tsx              # Login / authentication page
+│   │   ├── Products.tsx           # Product catalog with search
+│   │   ├── ProtectedRoute.tsx     # Auth guard wrapper
+│   │   ├── SharedLayout.tsx       # Main layout (nav + footer)
+│   │   ├── SharedProductLayout.tsx# Product sub-layout
+│   │   └── SingleProduct.tsx      # Product detail view
+│   ├── sections/
+│   │   ├── AboutHeroSection.tsx   # About page hero
+│   │   ├── AboutCallToAction.tsx  # About page CTA
+│   │   ├── StorySection.tsx       # About page story
+│   │   └── ValuesSection.tsx      # About page values
+│   ├── StyledNavbar.tsx           # Responsive navigation bar
+│   ├── Footer.tsx                 # Site footer
+│   └── usePages.tsx               # Navigation pages configuration
 ├── data/
-│   └── index.ts
+│   └── index.ts                   # Product data / mock data
 ├── types/
-│   └── index.ts
-├── App.css
-├── App.tsx
-├── index.css
-├── main.tsx
-└── vite-env.d.ts
+│   └── index.ts                   # TypeScript type definitions
+├── App.tsx                        # Root component with routes
+├── main.tsx                       # Application entry point
+├── index.css                      # Global styles & design system
+└── vite-env.d.ts                  # Vite type declarations
 ```
 
-## 🎯 Key Components
+## 🗺️ Routes Overview
 
-### Navigation & Layout
+| Route | Page | Access |
+|-------|------|--------|
+| `/` | Home | Public |
+| `/about` | About | Public |
+| `/products` | Product Catalog | Public |
+| `/products/:id` | Product Detail | Public |
+| `/login` | Login | Public |
+| `/dashboard` | Dashboard | 🔒 Protected |
+| `*` | 404 Error | Public |
 
-- **StyledNavbar**: Responsive navigation with mobile hamburger menu
-- **SharedLayout**: Main layout wrapper with footer integration
-- **SharedProductLayout**: Product-specific layout with breadcrumbs
+### Route Architecture
 
-### Pages
-
-- **Home**: Welcome page with hero section and featured products
-- **Products**: Product catalog with search and filter functionality
-- **SingleProduct**: Detailed product view with pricing
-- **About**: Company information and mission
-- **Login/Dashboard**: Authentication and user dashboard
-- **Error**: 404 error handling page
-
-### Features
-
-- **Search Functionality**: Real-time product filtering
-- **Responsive Cards**: Modern product display with hover effects
-- **Protected Routes**: Authentication-based route protection
-- **Dynamic Routing**: URL-based product navigation
+- **SharedLayout** wraps all routes with the navbar and footer
+- **SharedProductLayout** wraps `/products/*` with a breadcrumb-style back link
+- **ProtectedRoute** wraps `/dashboard` and redirects unauthenticated users to `/login`
 
 ## 🎨 Design System
 
 ### Color Palette
 
-- **Primary**: Purple gradient (#645cff to #504acc)
-- **Greys**: Comprehensive grey scale for text and backgrounds
-- **Accent**: Green/red for success/error states
+```
+Primary:   #645cff → #504acc (purple gradient)
+Grey:      #f8fafc → #0f172a (50–900 scale)
+Success:   #22c55e / #16a34a
+Error:     #ef4444 / #dc2626
+Warning:   #f59e0b
+```
+
+### Glassmorphism Tokens
+
+```css
+--glass-bg:        rgba(255, 255, 255, 0.04);
+--glass-border:    rgba(255, 255, 255, 0.06);
+--glass-blur:      blur(12px);
+--glass-shadow:    rgba(0, 0, 0, 0.2);
+```
 
 ### Typography
 
-- **Primary Font**: System font stack for optimal performance
-- **Sizes**: Responsive text scaling with custom properties
+- **Font Stack**: System font stack (`-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, ...`)
+- **Scale**: Responsive `clamp()` values for headings
+- **Heading Sizes**: `3.052rem` (h1) → `1.25rem` (h5)
 
-### Components
+### Shadow System
 
-- **Buttons**: Consistent styling with hover states
-- **Cards**: Shadow effects and smooth transitions
-- **Forms**: Clean input styling with focus states
+4 depth levels (`--shadow-1` through `--shadow-4`) for creating visual hierarchy.
 
-## 🔧 Development
+## 🖥️ Key Components
 
-### Available Scripts
+### Navigation
+- **StyledNavbar** — Sticky glass-effect navbar with mobile hamburger menu, active link indicators, and keyboard focus styles
+- **Footer** — Multi-column footer with social links
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
+### Home Page
+- **Hero Section** — Full-viewport hero with animated floating shapes, gradient text, stats bar, and CTA buttons
+- **Features Grid** — Glass cards with animated top-border hover effect
+- **Stats Banner** — 4-column statistics display
+- **Testimonials** — Customer review cards with star ratings
+- **CTA Section** — Call-to-action with trust indicators
 
-### Code Quality
+### Product Pages
+- **Products** — Responsive grid of product cards with image overlay zoom, real-time search, and "new" badges
+- **SingleProduct** — Two-column layout with sticky image gallery, color swatches, quantity selector, specs grid, and related products
 
-- **ESLint**: Configured for React and TypeScript
-- **TypeScript**: Strict type checking enabled
-- **CSS**: Organized with custom properties and consistent naming
+### About Page
+- **AboutHero** — Stats-driven hero section
+- **ValuesSection** — Value cards with dynamic accent colors
+- **StorySection** — Two-column story grid with milestone cards
+- **AboutCallToAction** — Final CTA with buttons
 
-## 📱 Responsive Design
+### Authentication
+- **Login** — Glassmorphism login card with demo credentials hint
+- **Dashboard** — User dashboard with welcome card, stats grid, and action cards
 
-The application is fully responsive with breakpoints for:
+## 📱 Responsive Breakpoints
 
-- **Mobile**: < 768px
-- **Tablet**: 768px - 1024px
-- **Desktop**: > 1024px
+| Breakpoint | Target |
+|------------|--------|
+| `< 768px` | Mobile |
+| `768px – 1024px` | Tablet |
+| `> 1024px` | Desktop |
 
-## 🌟 Learning Outcomes
+### Mobile Optimizations
+- Navbar collapses to hamburger menu
+- Product cards stack in single column
+- Single product page switches to single-column layout
+- Gallery becomes non-sticky with horizontal scrollable thumbnails
+- Dashboard stats and action cards stack vertically
 
-This project demonstrates:
+## ♿ Accessibility
 
-- Advanced React Router 6 patterns
-- Modern CSS techniques
-- TypeScript integration
-- Responsive web design
-- Component composition
-- State management
-- Performance optimization
+- `:focus-visible` outlines on interactive elements
+- `prefers-reduced-motion` disables animations
+- Semantic HTML structure
+- Proper button and link ARIA roles
 
-## 🤝 Contributing
+## 🔧 Available Scripts
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start Vite development server |
+| `npm run build` | TypeScript compile + Vite production build |
+| `npm run preview` | Preview the production build |
+| `npm run lint` | Run ESLint on all source files |
 
 ## 🙏 Acknowledgments
 
-- **React Router**: For powerful routing capabilities
-- **Vite**: For lightning-fast development experience
-- **React Icons**: For beautiful icon components
-- **Unsplash**: For high-quality product images
+- [React Router](https://reactrouter.com/) — Powerful routing for React
+- [Vite](https://vitejs.dev/) — Lightning-fast build tooling
+- [React Icons](https://react-icons.github.io/react-icons/) — Icon library
+- [Unsplash](https://unsplash.com/) — High-quality product images
 
 ---
 
-**Built with ❤️ using React Router 6**
+**Built with ❤️ using React 19 + React Router 7**
