@@ -8,7 +8,8 @@ A modern, responsive furniture e-commerce application built with **React 19** an
 |:---:|:---:|:---:|
 | ![Home Page](public/screenshots/home-page.png) | ![Products Page](public/screenshots/products-page.png) | ![Product Detail](public/screenshots/product-detail.png) |
 | ![About Page](public/screenshots/about-page.png) | ![Login Page](public/screenshots/login-page.png) | ![Dashboard Page](public/screenshots/dashboard-page.png) |
-| ![Error Page](public/screenshots/error-page.png) | | |
+
+![Error Page](public/screenshots/error-page.png)
 
 ---
 
